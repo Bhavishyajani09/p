@@ -1,8 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import { useState } from "react";
-import { handleError, handleSuccess } from "../../utils";
 
 function Login() {
   const [loginInfo, setLoginInfo] = useState({
@@ -27,7 +25,7 @@ function Login() {
     e.preventDefault();
     const {  email, password } = loginInfo;
     if ( !email || !password) {
-      return handleError("All fields are required");
+      return alert("All fields are required");
     }
     try {
       const url = "http://localhost:4000/auth/login";
@@ -43,23 +41,23 @@ function Login() {
       const result = await response.json();
       const {success , message , jwtToken,name, error} = result;
       if(success){
-        handleSuccess(message);
+        alert(message);
       localStorage.setItem("token" , jwtToken)
       localStorage.setItem("loggedInUser" , name)
      
         setTimeout(() => {
         navigate('/home')
-        }, 1000);
+        }, 500);
       } else if(error){
         const details = error.details[0].message;
-        handleError(details);
+        alert(details);
       }
       else if(!success){
-        handleError(message);
+        alert(message);
       }
       console.log(result);
     } catch (err) {
-      handleError(err.message);
+      alert(err.message);
     }
   };
 
@@ -112,8 +110,6 @@ function Login() {
           <Link to="/signup"> Signup</Link>
         </span>
       </form>
-
-      <ToastContainer />
     </div>
   );
 }

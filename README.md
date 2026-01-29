@@ -55,7 +55,7 @@ The frontend will run on `http://localhost:5173`
 - User registration and login
 - JWT authentication
 - Protected routes
-- Toast notifications
+- Simple alert notifications
 - Responsive design
 
 ## API Endpoints
@@ -78,5 +78,4 @@ The frontend will run on `http://localhost:5173`
 - React 19
 - Vite
 - React Router DOM
-- React Toastify
 
